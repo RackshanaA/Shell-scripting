@@ -25,6 +25,7 @@ Hello World
 echo $HOME
 echo $BASH_VERSION
 echo $PWD
+
 root@worker01-node:/home# ./varibale.sh
 /root
 5.0.17(1)-release
@@ -39,6 +40,7 @@ echo my name is $name
 echo my section is $std
 echo my value is $10val
 echo my value is $10val
+
 root@worker01-node:/home# ./varibale.sh
 ./varibale.sh: line 4: 10val=1345: command not found # variable cannot start with the numbers
 allisha
@@ -47,7 +49,47 @@ my section is B
 my value is 0val
 my value is 0val
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-4. 
+4.Get the input from the user
+echo "enter names"
+read name1 name2 name3
+echo The names are $name1 $name2 $name3
 
+root@worker01-node:/home# ./varibale.sh
+enter names
+tom ravi gopi buntu jaeely
+The names are tom ravi gopi buntu jaeely
 
+#! /bin/bash
+read -p 'username:' user
+read -sp 'password:' pass
+echo
+echo username: $user
+echo your password is: $pass
 
+root@worker01-node:/home# ./varibale.sh
+username:user
+password:
+username: user
+your password is: lll
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5. Array
+#! /bin/bash
+echo "enter names:"
+read -a names
+echo names are ${names[0]} ${names[1]} ${names[2]}
+
+root@worker01-node:/home# ./array.sh
+enter names:
+tommy bunny huran juran manu janu
+names are tommy bunny huran
+
+#! /bin/bash
+echo "enter names:"
+read
+echo names are $REPLY
+
+root@worker01-node:/home# ./array.sh
+enter names:
+nunu nano janu banu kanu ladu karina
+names are nunu nano janu banu kanu ladu karina
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
