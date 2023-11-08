@@ -1,0 +1,53 @@
+1.ubuntu@worker01:/home$ sudo cat /etc/shells
+# /etc/shells: valid login shells
+/bin/sh
+/bin/bash
+/usr/bin/bash
+/bin/rbash
+/usr/bin/rbash
+/bin/dash
+/usr/bin/dash
+/usr/bin/tmux
+/usr/bin/screen
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Executiion of the shell files
+root@worker01-node:/home/ubuntu# vim first.sh
+#! /bin/bash
+echo "Hello World"
+root@worker01-node:/home# chmod +x first.sh
+root@worker01-node:/home# ./ first.sh
+bash: ./: Is a directory
+root@worker01-node:/home# ./first.sh
+Hello World
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3. Variables
+#! /bin/bash
+echo $HOME
+echo $BASH_VERSION
+echo $PWD
+root@worker01-node:/home# ./varibale.sh
+/root
+5.0.17(1)-release
+/home
+
+#! /bin/bash
+name=allisha
+std=B
+10val=1345
+echo $name
+echo my name is $name
+echo my section is $std
+echo my value is $10val
+echo my value is $10val
+root@worker01-node:/home# ./varibale.sh
+./varibale.sh: line 4: 10val=1345: command not found # variable cannot start with the numbers
+allisha
+my name is allisha
+my section is B
+my value is 0val
+my value is 0val
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4. 
+
+
+
