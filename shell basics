@@ -82,6 +82,10 @@ root@worker01-node:/home# ./array.sh
 enter names:
 tommy bunny huran juran manu janu
 names are tommy bunny huran
+-------------------------------------------------------
+
+
+
 
 #! /bin/bash
 echo "enter names:"
@@ -93,7 +97,7 @@ enter names:
 nunu nano janu banu kanu ladu karina
 names are nunu nano janu banu kanu ladu karina
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Arguments
+6.Arguments
 $0 -The filename of the current script.
 $n-These variables correspond to the arguments with which a script was invoked. Here n is a positive decimal number corresponding to the position of an argument (the first argument is $1, the second argument is $2, and so on).
 $#-The number of arguments supplied to a script.
@@ -102,3 +106,192 @@ $@-All the arguments are individually double quoted. If a script receives two ar
 $?-The exit status of the last command executed.
 $$-The process number of the current shell. For shell scripts, this is the process ID under which they are executing.
 $-The process number of the last background command.
+
+#!/bin/bash
+echo "file name:" $0
+echo "first argument:" $1
+echo "second argument:" $2
+echo "third argument:" $3
+echo "print all:" $@
+echo "print all:" $*
+echo "Total no of arguments:" $#
+echo $$
+echo $?
+~
+root@worker01-node:/home/shellscript# ./args.sh tomcat dockere sonar kuber
+file name: ./args.sh
+first argument: tomcat
+second argument: dockere
+third argument: sonar
+print all: tomcat dockere sonar kuber
+print all: tomcat dockere sonar kuber
+Total no of arguments: 4
+1629
+0
+
+#!/bin/bash
+echo $1 $2 $3 $4 > echo $1 $2 $3 $4
+args=("$@")
+args=("$*")
+echo ${args[0]},${args[1]},${args[2]}
+echo $args
+
+root@worker01-node:/home/shellscript# ./args1.sh tom bun ban
+tom,bun,ban
+tom,bun,ban
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+7. if -elif- else
+7.1 if [ expression ]
+then
+   statement1
+else
+   statement2
+fi
+
+a=10 
+b=20 
+  
+#Check whether they are equal 
+if [ $a == $b ] 
+then 
+    echo "a is equal to b"
+fi 
+
+if [ $a != $b ] 
+then 
+    echo "a is not equal to b"
+fi 
+$bash -f main.sh
+a is not equal to b
+-----------------------------------------------------
+7.2 if [ expression1 ]
+then
+   statement1
+   statement2
+   .
+   .
+elif [ expression2 ]
+then
+   statement3
+   statement4
+   .
+   .
+else
+   statement5
+fi
+with boolean operators
+
+7.3 And ( 3 differnt ways to use it)
+#!/bin/bash
+echo "enter the age:"
+read age
+if [ $age -ge 0 ] && [ $age -le 5 ]
+then
+   echo " you are a kid"
+elif [ $age -ge 6 -a  $age -le 13 ]
+then
+   echo "your the primary school child"
+elif [[ $age -ge 14 &&  $age -le 18 ]]
+then
+   echo "your are an adult"
+else
+  echo "you are matured you are eligible to vote"
+fi
+-------
+root@worker01-node:/home/shellscript# ./if.sh
+enter the age:
+5
+ you are a kid
+---------------------------------------------------------------
+7.4 or opearator
+
+echo -e "enter the file name \c"
+read file
+if [ -e $file ] || [ -s $file ]; then
+    echo "The file exists or is special file."
+elif [[ -r $file ||  -w $file || -x $file ]]; then
+    echo "The file exits is readbale writable and executable."
+elif [ -p $file -o -u $file ]; then
+    echo "The file exists is piped filed or has userid ."
+else
+    echo "The file does not exist or is not readable."
+fi
+
+root@worker01-node:/home/shellscript# ./elif.sh
+enter the file name shell
+The file exists or is special file.
+---------------------------------------------------------------------------------------------
+8. Comparision Opearators
+#!/bin/bash
+num1=100
+num2=70
+if (( $num1 == $num2 ));then
+  echo " the numbers are same"
+elif (( $num1 >= $num2 ));then
+  echo " the num1 is greater than num2"
+elif (( $num1 <= $num2 ));then
+  echo " the num1 is greater than num2"
+fi
+root@worker01-node:/home/shellscript# ./operator.sh
+ the num1 is greater than num2
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+9. Arithmetic Operators
+#!/bin/bash
+num1=100
+num2=70
+echo $(( $num2 + $num1))
+echo $(( $num2 - $num1))
+echo $(( $num2 % $num1))
+echo $(( $num2 * $num1)) # or using this method
+echo $( expr $num1 \+ $num2 )
+echo $( expr $num1 \* $num2 )
+
+root@worker01-node:/home/shellscript# ./operator.sh
+170
+-30
+70
+7000
+170
+7000
+
+Another way
+$ man bc
+#!/bin/bash
+num1=20.3
+num2=5.5
+echo " $num1 + $num2 " | bc
+ echo " $num1 - $num2 " | bc
+ echo " $num1 * $num2 " | bc   # bc refers to arbitary precison calulator
+ echo "  scale=2 ;$num1 / $num2 " | bc
+ echo " scale=2 ; 3^3" | bc -l
+
+
+root@worker01-node:/home/shellscript# ./oerator1.sh
+25.8
+14.8
+111.6
+3.69
+27
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+10. Switch case
+#!/bin/bash
+echo " enter the alphabets or numbers or any keys:"
+read char
+case $char in
+ [A-Z] )
+ echo "enter $char is capital letters" ;;
+ [a-z] )
+ echo "enter $char is small letters" ;;
+ [0-9] )
+ echo "enter $char is numbers" ;;
+ ? )
+ echo "enter $char is capital letters" ;;
+ * )
+ echo "enter $char is special characters" ;;
+esac
+~
+root@worker01-node:/home/shellscript# ./case.sh
+ enter the alphabets or numbers or any keys:
+B
+enter B is capital letters
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
