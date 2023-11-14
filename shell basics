@@ -83,10 +83,32 @@ enter names:
 tommy bunny huran juran manu janu
 names are tommy bunny huran
 -------------------------------------------------------
+#!/usr/bin/bash
+os=(ubuntu linux rhel suselinux)
+echo "print all" ${os[@]}
+echo "print the first index:" ${os[0]}
+echo "second index:" ${os[1]}
+echo "third index:" ${os[2]}
+echo "no of arguments:" ${#os[@]}
+echo "print indexes of an array" ${!os[@]}
+os[5]=centos #adding an element in the array
+os[7]=amazonlinux
+echo "print all" ${os[@]}
+echo "no of arguments:" ${#os[@]} #array length
+unset os[2] #removing an element in the array
+echo "print all" ${os[@]}
 
-
-
-
+$ sh first.sh
+print all ubuntu linux rhel suselinux
+print the first index: ubuntu
+second index: linux
+third index: rhel
+no of arguments: 4
+print indexes of an array 0 1 2 3
+print all ubuntu linux rhel suselinux centos amazonlinux
+no of arguments: 6
+print all ubuntu linux suselinux centos amazonlinux
+-------------------------------------------------------------------------------------------------------------------------------------------------
 #! /bin/bash
 echo "enter names:"
 read
@@ -295,3 +317,70 @@ root@worker01-node:/home/shellscript# ./case.sh
 B
 enter B is capital letters
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+11. Looping statements
+#!/usr/bin/bash
+echo "enter the number:"
+read num
+while [ $num -le 10 ]
+do 
+   echo $num
+   num=$(( num+1 )) #or (( ++num ))
+   sleep 1 # Here slepp refers to execute the commnad 1s later
+done 
+-----$ sh first.sh
+enter the number:
+3
+3
+4
+5
+6
+7
+8
+9
+10
+---------------------------------------------------------------------
+$num=1
+while [ $num -le 3 ]
+do 
+   echo $num
+   num=$(( ++num ))
+   xterm &        #or it will open the terminals for 2 times
+   gnome_terminal &
+done
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+12. Reading the files using while loop
+$vim first.sh
+1. Input Redirection
+first.sh
+#!/usr/bin/bash
+while read p
+do 
+echo $p
+done <first.sh
+------$ sh first.sh
+#!/usr/bin/bash
+while read p
+do
+echo $p
+-------------------------------------------------------------
+2. Read the content of the file from one variable
+$vim first.sh
+cat first.sh | while read p
+do 
+echo $p
+done 
+---------cat first.sh | while read p
+do 
+echo $p
+done 
+---------------------------------------------------------------
+3. Word boundaries
+#!/usr/bin/bash
+while IFS= read -r line   or while IFS= ' ' read -r line
+do
+  echo $line
+done < first.sh
+same as above ouptput
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13. until loop
+
