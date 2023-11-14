@@ -537,7 +537,53 @@ Go to canteen
 ERROR: Invalid selection
 #?
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+16 Function
+1. function hello () {
+  echo "hello world"
+  }
+quit () {
+  exit
+}
+hello 
+echo "foo"
+quit
+-----------$ sh first.sh
+hello world
+foo
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Passing arguments in function
+function print() {
+    name=$1 #local varaible
+    echo enter the name $name
+}
+name=puppy #global varibale
+echo the name is $name
+print rackshu
+--------------------------------------------------------------------------------------------
+3. Function with ternary operator
+#!/bin/bash
+usage () {
+    echo "you need to enter the argument:"
+    echo usage : $0 filename
+}
+is_file_exist (){
+    local file=$1
+    [[ -f "$file" ]] && return 0 || return 1
+}
+[[ $# -eq 0 ]] && usage
+if ( is_file_exist "$1")
+then
+   echo "file foumd"
+else 
+   echo "file not found"
+fi 
 
+Dell@DESKTOP-V3U0962 MINGW64 /e/shell scripting
+$ touch sundar.txt
+
+Dell@DESKTOP-V3U0962 MINGW64 /e/shell scripting
+$ sh hello.sh sundar.txt
+file foumd
 --------------------------------------------------------------------------------------
 
 
