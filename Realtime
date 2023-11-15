@@ -5,19 +5,24 @@ sends a notificcation alert
 
 for example
 #!/bin/bash
-log_file="/path/.log"
-backup_file="/path/var/log"
 
-email=a.rackshana@gmail.com
+log_file="/path/.log"
+backup_dir="/path/var/log"  # Corrected the variable name
+email="a.rackshana@gmail.com"
 sub="log file"
 
-if [ -e "$log_file" ];then
-   timestamp=$( date + "%y%m%d%H%M%S")
+if [ -e "$log_file" ]; then
+   timestamp=$(date +"%y%m%d%H%M%S")  # Removed the space in the date command
    
-   backup_file="$back_file/log_backup_$timestamp.log"
-   grep  "ERROR" "$log_file" > "$backup_file"
+   backup_file="$backup_dir/log_backup_$timestamp.log"  # Corrected the variable name
+   grep "ERROR" "$log_file" > "$backup_file"
 
-   echo "backup created: $backup_file"
+   echo "Backup created: $backup_file"
 else
-   echo "log file is not found"
+   echo "Log file is not found"
 fi
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+To avoid the exit, we need to execute it
+trap echo "exit commands are deleted" 0
+echo "hello banu"
+exit 0
