@@ -1,0 +1,23 @@
+In realtime shell cripting we will use in 
+monitoring logs
+backup files and logs 
+sends a notificcation alert
+
+for example
+#!/bin/bash
+log_file="/path/.log"
+backup_file="/path/var/log"
+
+email=a.rackshana@gmail.com
+sub="log file"
+
+if [ -e "$log_file" ];then
+   timestamp=$( date + "%y%m%d%H%M%S")
+   
+   backup_file="$back_file/log_backup_$timestamp.log"
+   grep  "ERROR" "$log_file" > "$backup_file"
+
+   echo "backup created: $backup_file"
+else
+   echo "log file is not found"
+fi
