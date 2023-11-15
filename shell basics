@@ -585,7 +585,29 @@ Dell@DESKTOP-V3U0962 MINGW64 /e/shell scripting
 $ sh hello.sh sundar.txt
 file foumd
 --------------------------------------------------------------------------------------
+4. Function with local defined
+#!/bin/bash
+function print() {
+    name=$1 #local varaible
+    echo enter the name $name
+}
+name=puppy #global varibale
+print rackshu
+echo the name is $name
+------------$ sh funtion.sh
+enter the name rackshu
+the name is rackshu
 
+TO avoid this issue we are making the name inside the function as local...
+#!/bin/bash
+function print() {
+    local name=$1 #local varaible # defining here
+    echo enter the name $name
+}
+name=puppy #global varibale
+print rackshu
+echo the name is $name
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
